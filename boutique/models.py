@@ -2,12 +2,17 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-
+from django.utils.text import slugify
 
 # Les Catégories
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    # slug = models.SlugField(max_length=255, unique=True)
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     class Meta:
     #     ordering = ('name',)

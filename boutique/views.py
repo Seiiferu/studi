@@ -27,15 +27,15 @@ def category_summary(request):
     categories = Category.objects.all()
     return render(request, 'category_summary.html', {"categories": categories})
 
-def category(request, foo):
-    foo = foo.replace('-', ' ')
-    try:
-        category = Category.objects.get(name=foo)
-        products = Product.objects.filter(category=category)
-        return render(request, 'category.html', {'products': products, 'category': category})
-    except:
-        messages.error(request, 'Oups! Catégorie invalide, veuillez réessayer...')
-        return redirect('category_summary')
+def category(request, slug):
+	# foo = foo.replace('-', ' ')
+	try:
+		category = Category.objects.get(slug=slug)
+		products = Product.objects.filter(category=category)
+		return render(request, 'category.html', {'products': products, 'category': category})
+	except:
+		messages.error(request, 'Oups! Catégorie invalide, veuillez réessayer...')
+		return redirect('category_summary')
 
 def product_detail(request, pk):
     product = Product.objects.get(id=pk)
