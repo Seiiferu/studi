@@ -7,7 +7,7 @@ from django.utils.text import slugify
 # Les Catégories
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -15,8 +15,6 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
-    #     ordering = ('name',)
-    #     verbose_name = 'category'
         verbose_name_plural = 'categories'
 
     def __str__(self):

@@ -30,7 +30,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 # Configure ALLOWED_HOSTS
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
-
+CSRF_TRUSTED_ORIGINS = ['https://jeux-olympiques-q518.onrender.com']
 
 
 # Application definition
