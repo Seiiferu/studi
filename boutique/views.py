@@ -27,10 +27,10 @@ def category_summary(request):
     categories = Category.objects.all()
     return render(request, 'category_summary.html', {"categories": categories})
 
-def category(request, slug):
-	# foo = foo.replace('-', ' ')
+def category(request, foo):
+	foo = foo.replace('-', ' ')
 	try:
-		category = Category.objects.get(slug=slug)
+		category = Category.objects.get(slug=foo)
 		products = Product.objects.filter(category=category)
 		return render(request, 'category.html', {'products': products, 'category': category})
 	except:
