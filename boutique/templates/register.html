@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />    <title>Formulaire d'exploration</title>
+
+    <!-- Stylesheets -->
+    <link href="{% static 'css/register.css' %}" rel="stylesheet" />
+</head>
+<body>
+
+    <center>
+        <div class="grid-bg ba-grid anim">
+            <div class="inner">
+        
+       <!-- Form Wrapper -->
+                <div class="form-wrapper">
+                    <h1>Formulaire d'exploration</h1>
+                    <form method="POST" action="{% url 'register' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="terms">
+                            <input type="checkbox" required>
+                            <label> J'accepte les <u>Conditions d'Utilisation</u> et la <u>Politique de Confidentialité</u>.</label>
+                        </div>
+                        <input type="submit" value="Rejoignez l'aventure">
+                        <p class="message">Déjà inscrit pour l'aventure ?<a href="{% url 'login' %}">L'aventure reprend ici</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </center>
+    
+</body>
+</html>
+
+{% endblock %}
+

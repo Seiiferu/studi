@@ -1,0 +1,245 @@
+
+{% block content %}
+
+<style>
+
+      /* styling my title */
+    
+    @import url('https://fonts.googleapis.com/css?family=Cairo');
+    body {
+        background-color: #010;
+    }
+    
+    .title {
+        font-family: "Cairo";
+        text-align: center;
+        color: #FFF;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 80vh;
+        letter-spacing: 1px;
+        line-height:2;
+    }
+    
+    h1 {
+        background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+        background-size: cover;
+        color: transparent;
+        -moz-background-clip: text;
+        -webkit-background-clip: text;
+        text-transform: uppercase;
+        font-size: 120px;
+        margin: 10px 0;
+    }
+
+
+    /* styling my button */
+    
+    button {
+        margin: 20px;
+      }
+      .custom-btn {
+        width: 130px;
+        height: 40px;
+        color: #fff;
+        border-radius: 5px;
+        padding: 10px 25px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+         box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+         7px 7px 20px 0px rgba(0,0,0,.1),
+         4px 4px 5px 0px rgba(0,0,0,.1);
+        outline: none;
+      }
+      
+      .btn-12{
+        position: relative;
+        right: 20px;
+        bottom: 20px;
+        border:none;
+        box-shadow: none;
+        width: 130px;
+        height: 40px;
+        line-height: 42px;
+        -webkit-perspective: 230px;
+        perspective: 230px;
+      }
+      .btn-12 span {
+        background: #f00909;
+        background: linear-gradient(0deg, rgba(240,9,9,1) 0%, rgba(180,0,0,1) 100%);
+        display: block;
+        position: absolute;
+        width: 130px;
+        height: 40px;
+        box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+         7px 7px 20px 0px rgba(0,0,0,.1),
+         4px 4px 5px 0px rgba(0,0,0,.1);
+        border-radius: 5px;
+        margin:0;
+        text-align: center;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: all .3s;
+        transition: all .3s;
+      }
+      .btn-12 span:nth-child(1) {
+        box-shadow:
+         -7px -7px 20px 0px #fff9,
+         -4px -4px 5px 0px #fff9,
+         7px 7px 20px 0px #0002,
+         4px 4px 5px 0px #0001;
+        -webkit-transform: rotateX(90deg);
+        -moz-transform: rotateX(90deg);
+        transform: rotateX(90deg);
+        -webkit-transform-origin: 50% 50% -20px;
+        -moz-transform-origin: 50% 50% -20px;
+        transform-origin: 50% 50% -20px;
+      }
+      .btn-12 span:nth-child(2) {
+        -webkit-transform: rotateX(0deg);
+        -moz-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        -webkit-transform-origin: 50% 50% -20px;
+        -moz-transform-origin: 50% 50% -20px;
+        transform-origin: 50% 50% -20px;
+      }
+      .btn-12:hover span:nth-child(1) {
+        box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+         7px 7px 20px 0px rgba(0,0,0,.1),
+         4px 4px 5px 0px rgba(0,0,0,.1);
+        -webkit-transform: rotateX(0deg);
+        -moz-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+      }
+      .btn-12:hover span:nth-child(2) {
+        box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+        7px 7px 20px 0px rgba(0,0,0,.1),
+        4px 4px 5px 0px rgba(0,0,0,.1);
+       color: transparent;
+        -webkit-transform: rotateX(-90deg);
+        -moz-transform: rotateX(-90deg);
+        transform: rotateX(-90deg);
+      }
+
+
+  /* styling my texte */
+
+    .content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+        font-size: 1.1rem;
+    }
+
+    .highlight {
+        color: #f5a623;
+        font-weight: bold;
+    }
+
+    p {
+        color: #999797;
+        text-align: justify;
+    }
+
+    h3 {
+        color: #999797;
+        text-align: center;
+    }
+    
+    .sports-list {
+        margin-top: 20px;
+        color: #d1d1d1;
+        font-size: 0.95rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .sport {
+        background-color: #333;
+        padding: 5px 10px;
+        border-radius: 12px;
+        margin: 5px;
+    }
+
+</style>
+
+
+<div class="content">
+    
+    <div class="title">
+        <h1> Jeux Olympiques - PARIS 2024 </h1>
+    </div>
+
+    <p>En 2024, <span class="highlight">Paris</span> brillera de nouveau en accueillant les Jeux pour la troisième fois de son histoire. Organiser les Jeux Olympiques et Paralympiques, c’est orchestrer le plus grand rassemblement mondial, emblème de tolérance, de diversité et d'unité.</p>
+    
+    <p>Les <span class="highlight">Jeux Olympiques</span> se tiendront du <strong>26 juillet au 11 août 2024</strong>, suivis des <span class="highlight">Jeux Paralympiques</span> du <strong>28 août au 8 septembre 2024</strong>. À travers toute la France, Paris <span class="highlight">2024</span> s'aspire à offrir des Jeux à la fois grandioses et responsables, bénéficiant à tous, et permettant à chacun de vivre pleinement l'aventure olympique et paralympique.</p>
+    <br/>
+    
+
+    <h3>Les 45 épreuves qui composeront cette célébration sportive majestueuse sont :</h3>
+    <br/>
+
+    <div class="sports-list">
+        <span class="sport">Athlétisme</span>
+        <span class="sport">Aviron</span>
+        <span class="sport">Badminton</span>
+        <span class="sport">Basketball</span>
+        <span class="sport">Basketball 3x3</span>
+        <span class="sport">Boxe</span>
+        <span class="sport">Breaking</span>
+        <span class="sport">Canoë slalom</span>
+        <span class="sport">Canoë sprint</span>
+        <span class="sport">Cyclisme BMX freestyle</span>
+        <span class="sport">Cyclisme BMX racing</span>
+        <span class="sport">Cyclisme sur piste</span>
+        <span class="sport">Cyclisme sur route</span>
+        <span class="sport">Cyclisme VTT</span>
+        <span class="sport">Escalade sportive</span>
+        <span class="sport">Escrime</span>
+        <span class="sport">Football</span>
+        <span class="sport">Golf</span>
+        <span class="sport">Gymnastique artistique</span>
+        <span class="sport">Gymnastique rythmique</span>
+        <span class="sport">Haltérophilie</span>
+        <span class="sport">Handball</span>
+        <span class="sport">Hockey sur gazon</span>
+        <span class="sport">Judo</span>
+        <span class="sport">Lutte</span>
+        <span class="sport">Natation</span>
+        <span class="sport">Natation artistique</span>
+        <span class="sport">Natation en eau libre</span>
+        <span class="sport">Pentathlon moderne</span>
+        <span class="sport">Plongeon</span>
+        <span class="sport">Rugby à 7</span>
+        <span class="sport">Skateboard</span>
+        <span class="sport">Sports équestres</span>
+        <span class="sport">Surf</span>
+        <span class="sport">Taekwondo</span>
+        <span class="sport">Tennis</span>
+        <span class="sport">Tennis de table</span>
+        <span class="sport">Tir</span>
+        <span class="sport">Tir à l'arc</span>
+        <span class="sport">Trampoline</span>
+        <span class="sport">Triathlon</span>
+        <span class="sport">Voile</span>
+        <span class="sport">Volleyball</span>
+        <span class="sport">Volleyball de plage</span>
+        <span class="sport">Water-polo</span>
+    </div>
+
+<br/><br/>
+<center>
+<a href="{% url 'category' 'PARIS 2024' %}"><button class="custom-btn btn-12"><span>Billetterie</span><span>Rejoignez l'aventure!</span></button></a>
+</center>
+{% endblock %}

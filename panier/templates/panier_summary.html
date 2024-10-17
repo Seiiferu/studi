@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Voyage à travers les merveilles</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Voir votre butin d'aventurier...</p>
+            </div>
+        </div>
+    </header>
+    <br/> 
+        <div class="container">
+            {% if cart_products %}
+                {% for product in cart_products %}
+
+                <div class="card mb-3" >
+                    <div class="row g-0 d-flex align-items-center">
+                        <div class="col-md-3">
+                        <img src="{{ product.image.url }}" class="img-fluid img-full-size rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8 d-flex ">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            {% if product.is_sale %}
+                            <div class="d-flex small text-warning mb-2">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                            <br/><br/>
+                            <div class="bi-star-fill"></div>
+                            &nbsp;&nbsp;Offre Spéciale!&nbsp;&nbsp;
+                            <div class="bi-star-fill"></div>
+                        </div>
+                
+                            <p>Tarif Spécial: €{{ product.sale_price }}</p>
+                
+                        {% else %}
+                        <br/>
+                        <p>Tarif: €{{ product.price }}</p>
+
+                        {% endif %}
+                            <br/><br/>
+                        <div class="row justify-content-center">
+                    <div class="col-md-2">Butin amassé:</div>
+                                <div class="col-md-2">
+                                <select class="form-select form-select-sm" id="select{{ product.id }}">
+                                    
+                            {% for key, value in quantities.items %}
+                                {% if key == product.id|slugify %}
+                                    <option selected>{{ value }}</option>
+                                {% endif %}
+                            {% endfor %}
+                                
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                </select>
+                                </div>
+                            </div>
+                            <br/><br/>
+                        <a href="{% url 'category_summary' %}" class="btn btn-secondary">Billetterie</a>
+                        <button type="button" data-index="{{ product.id }}" class="btn btn-primary update-cart">Mettre à jour l'aventure</button>
+                        <button type="button" data-index="{{ product.id }}" class="btn btn-danger delete-product">Renoncer à l'aventure</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                {% endfor %}
+                <div align="right">
+                <h3>Total: €{{ totals }}</h3>
+                <a href="{% url 'checkout' %}" class="btn btn-success">Récupérez votre trésor</a>
+                </div>
+                <br/><br/><br/><br/>
+                {% else %}
+                Votre quête n'a pas encore commencé...
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                {% endif %}
+        </div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+
+<script>
+    // Update cart
+        $(document).on('click', '.update-cart', function(e){
+            e.preventDefault();
+            // Grab the product id
+            var productid = $(this).data('index');
+
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'panier_update' %}",
+                    data: {
+                product_id: $(this).data('index'),
+                product_qty: $('#select' + productid + ' option:selected').text(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: "post"
+                    },
+
+                    success: function(json){
+                        //console.log(json)
+                        //document.getElementById("cart_quantity").textContent = json.qty
+                        location.reload();
+                    },
+
+                    error: function(xhr, errmsg, err){
+
+                    }
+
+                });
+        });    
+
+    // Delete product from cart
+        $(document).on('click', '.delete-product', function(e){
+            e.preventDefault();
+        // grab the product id
+        //var productid = $(this).data('index');
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'panier_delete' %}",
+                    data: {
+                product_id: $(this).data('index'),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: "post"
+                    },
+
+                    success: function(json){
+                        //console.log(json)
+                        //document.getElementById("cart_quantity").textContent = json.qty
+                        location.reload();
+                    },
+
+                    error: function(xhr, errmsg, err){
+
+                    }
+
+                });
+        });    
+</script>
+
+{% endblock %}

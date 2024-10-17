@@ -1,0 +1,81 @@
+{% load static %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Jeux Olympiques</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: ghostwhite;">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#!">
+                    <img src="{% static 'images/mascotte.png' %}" alt="Logo Paris 2024" style="height: 45px; margin-right: 10px;">
+                    Jeux Olympiques
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'accueil' %}"><i class='bx bx-home-smile'></i>Accueil</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-spreadsheet'></i>Billeterie</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'category_summary' %}">Tous Nos Billets</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'PARIS 2024' %}">
+                                    <i class='bx bxs-trophy'></i>Jeux Olympiques PARIS - 2024</a>
+                                </li>
+
+                            </ul>
+                            
+                        </li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'search' %}"><i class='bx bx-search-alt'></i>Explorer</a></li>
+
+            {% if user.is_authenticated %}
+                
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-body'></i>Carnet Aventurier</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'update_user' %}"><i class='bx bx-id-card' ></i>&ensp;Informations d'aventurier</a></li>
+                            <li><hr class="dropdown-divider" /></li><li><a class="dropdown-item" href="{% url 'update_info' %}"><i class='bx bxs-map-alt'></i>&ensp;Informations d'expédition</a></li>
+                        </ul>
+                    </li>
+                    
+                    {% if user.is_superuser %}
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-package'></i>&ensp;Achats</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'order_summary' %}"><i class='bx bx-purchase-tag'></i>&ensp;Récapitulatif des ventes</a></li>
+                            <li><hr class="dropdown-divider" /><a class="dropdown-item" href="{% url 'not_shipped_dash' %}"><i class='bx bx-run' ></i>&ensp;Butin en préparation</a></li>
+                            <li><hr class="dropdown-divider" /></li><li><a class="dropdown-item" href="{% url 'shipped_dash'  %}"><i class='bx bxs-truck'></i>&ensp;Butin en route</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Partir&ensp;<i class='bx bx-log-out'></a></i></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class='bx bx-log-in-circle'></i>&ensp;Reprenez Votre Aventure</a></li>
+        
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}"><i class='bx bx-user-plus'></i>&ensp;Créez Votre Aventure</a></li>
+
+                
+            {% endif %}
+            
+            <li class="nav-item"><a class="nav-link" href="{% url 'nous' %}">Nous</a></li>
+                        
+                    </ul>
+                    <form class="d-flex">
+                        <a href="{% url 'panier_summary' %}" class="btn btn-outline-dark"><i class="bi-cart-fill me-1"></i>Panier d'aventurier<span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ panier|length }}</span></a>
+
+                    </form>
+                </div>
+            </div>
+        </nav>

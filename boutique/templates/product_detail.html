@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style >
+    .img-full-size {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Garde les proportions et centre l'image tout en remplissant le conteneur */
+    }
+
+    .btn-tricolor {
+        background: linear-gradient(to right, blue 33.33%, white 33.33%, white 66.66%, red 66.66%);
+        color: black; /* Couleur du texte */
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+</style>
+
+<div class="container">
+<br />
+
+<div class="card mb-3" >
+    <div class="row g-0 d-flex align-items-center">
+      <div class="col-md-3">
+        <img src="{{ product.image.url }}" class="img-fluid img-full-size rounded-start" alt="..." style="height: 100%; object-fit: cover;">
+      </div>
+      <div class="col-md-8 d-flex">
+        <div class="card-body">
+          <br/><br/><br/><br/><br/>
+            <center>
+        <p>Dans: {{product.category}}</p>
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          {% if product.is_sale %}
+          <div class="d-flex justify-content-center small text-warning mb-2">
+            <div class="bi-star-fill"></div>
+            &nbsp;&nbsp;Offre Spéciale!&nbsp;&nbsp;
+            <div class="bi-star-fill"></div>
+        </div>
+
+          <strike>
+            <p>Tarif: €{{ product.price }}</p>
+          </strike>
+            &nbsp;
+            <p>Tarif Spécial: €{{ product.sale_price }}</p>
+
+          {% else %}
+          <p>Tarif: €{{ product.price }}</p>
+          {% endif %}
+        </center>
+          <br /><br/>
+          <div class="row justify-content-center">
+            <div class="col-md-2">Nombre de butins :</div>
+            <div class="col-md-2">
+            <select class="form-select from form-select-sm" id="qty-cart">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            </div>
+          </div>
+          <br /><br/>
+          <div class="d-flex justify-content-center"> 
+          <a href="{% url 'category_summary' %}" class="btn btn-tricolor">Retour à l'exploration</a>&ensp;&ensp;
+          <button type="button" value="{{ product.id }}" class="btn btn-tricolor" id= "add-cart">Emporter ce trésor</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+<script>
+    $(document).on('click', '#add-cart', function(e){
+        e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'panier_add' %}",
+                data: {
+            product_id: $('#add-cart').val(),
+            product_qty: $('#qty-cart option:selected').text(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: "post"
+                },
+
+                success: function(json){
+                    {% comment %} console.log(json); {% endcomment %}
+                    document.getElementById('cart_quantity').
+                      textContent = json.qty
+                    location.reload();
+                },
+
+                error: function(xhr, errmsg, err){
+
+                }
+              
+            });
+    });
+</script>
+
+
+  {% endblock %}
