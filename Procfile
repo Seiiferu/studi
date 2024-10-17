@@ -1,1 +1,1 @@
-web: gunicorn JOPARIS.wsgi
+web: gunicorn JOPARIS.wsgi:application
