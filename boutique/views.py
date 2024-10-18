@@ -30,12 +30,16 @@ def category_summary(request):
 def category(request, slug):
 	try:
 		category = Category.objects.get(slug=slug)
-		products = Product.objects.filter(Category=category)
+		products = Product.objects.filter(category=category)
 		return render(request, 'category.html', {'products': products, 'category': category})
 	except:
 		messages.error(request, 'Oups! Catégorie invalide, veuillez réessayer...')
 		return redirect('category_summary')
 
+def navbar_context(request):
+    categories = Category.objects.all()
+    return {"categories": categories}
+	
 def product_detail(request, pk):
     product = Product.objects.get(id=pk)
     return render(request, 'product_detail.html', {'product': product})
