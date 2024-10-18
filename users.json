@@ -1,0 +1,56 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$4AsjNjats7YMLev9IglPj3$acCqBevVaLXjlo2fG6dfoq9K9bMDdo6iy2M3UzrUl4g=",
+        "last_login": "2024-10-18T04:06:58.446Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "GeeksterLab@outlook.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-10-16T09:11:49Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$VQ2jy3de8XywMr5LuC4PuQ$6Rj18/N7B1UksZe1BgZsBH+urMBXj2twyxSFdwlas7M=",
+        "last_login": "2024-10-16T13:57:52.140Z",
+        "is_superuser": false,
+        "username": "Marc",
+        "first_name": "Marc",
+        "last_name": "Divide",
+        "email": "mark@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-16T09:54:55.261Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$NGuhoKdNUqxDGWHmWtyGVh$+6n4rN82aiNXpLJ+jmGgcxEZTkO0owYmDYNsuGbV9ng=",
+        "last_login": "2024-10-17T17:02:53.667Z",
+        "is_superuser": false,
+        "username": "Davide",
+        "first_name": "Davide",
+        "last_name": "Alin",
+        "email": "marc@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-17T17:02:51.482Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
