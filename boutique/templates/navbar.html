@@ -32,8 +32,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{% url 'category_summary' %}">Tous Nos Billets</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="{% url 'category' 'paris-2024' %}">
-                                    <i class='bx bxs-trophy'></i>Jeux Olympiques PARIS - 2024</a>
+                                <li><a class="dropdown-item" href="{% url 'category' category.slug %}"><i class='bx bxs-trophy'></i>{{ category.name}}</a>
                                 </li>
 
                             </ul>

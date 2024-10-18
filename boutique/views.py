@@ -27,11 +27,10 @@ def category_summary(request):
     categories = Category.objects.all()
     return render(request, 'category_summary.html', {"categories": categories})
 
-def category(request, foo):
-	foo = foo.replace('-', ' ')
+def category(request, slug):
 	try:
-		category = Category.objects.get(slug=foo)
-		products = Product.objects.filter(category=category)
+		category = Category.objects.get(slug=slug)
+		products = Product.objects.filter(Category=category)
 		return render(request, 'category.html', {'products': products, 'category': category})
 	except:
 		messages.error(request, 'Oups! Catégorie invalide, veuillez réessayer...')
